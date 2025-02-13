@@ -1,4 +1,15 @@
 <h1>cool node js website</h1>
 <button id="alertButton">Click Me</button>
 
-   <script src="script.js"></script>
+   <script src="/socket.io/socket.io.js"></script>
+   <script>
+      const socket = io();
+
+      document.getElementById('alertButton').addEventListener('click', () => {
+         socket.emit('sendAlert');
+      });
+
+      socket.on('receiveAlert', (message) => {
+         alert(message);
+      });
+   </script>
