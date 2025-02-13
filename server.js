@@ -8,6 +8,29 @@ const fs = require("fs");
 const cookieParser = require("cookie-parser");
 const rateLimit = require("express-rate-limit");
 
+const express = require('express');
+const socketIo = require('socket.io');
+const app = express();
+
+app.get('/', (req, res) => {
+   res.sendFile(__dirname + '/index.html');
+});
+
+io.on('connection', (socket) => {
+   console.log('A user connected');
+   socket.on('disconnect', () => {
+      console.log('A user disconnected');
+   });
+
+   socket.on('sendAlert', () => {
+      io.emit('receiveAlert', 'This is a universal alert!');
+   });
+});
+
+server.listen(3000, () => {
+   console.log('Server running on port 3000');
+});
+
 //  :)
 
 const express = require('express');
