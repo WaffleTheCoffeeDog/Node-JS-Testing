@@ -1,12 +1,24 @@
+// ?????
+const helmet = require("helmet");
+const mongoose = require("mongoose");
+const http = require("http").createServer(app);
+const io = require("socket.io")(http);
+module.exports = { io };
+const fs = require("fs");
+const cookieParser = require("cookie-parser");
+const rateLimit = require("express-rate-limit");
+
+//  :)
+
 const express = require('express');
-const http = require('http');
-const socketIo = require('socket.io');
 const app = express();
-const server = http.createServer(app);
-const io = socketIo(server);
+const path = require('path');
+
+// Serve static files from the "public" directory
+app.use(express.static(path.join(__dirname, 'public')));
 
 app.get('/', (req, res) => {
-   res.sendFile(__dirname + '/index.html');
+  res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
 
 io.on('connection', (socket) => {
@@ -20,6 +32,6 @@ io.on('connection', (socket) => {
    });
 });
 
-server.listen(3000, () => {
-   console.log('Server running on port 3000');
+app.listen(3000, () => {
+  console.log('Server is running on port 3000');
 });
