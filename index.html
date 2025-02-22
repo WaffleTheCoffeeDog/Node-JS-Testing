@@ -1,9 +1,10 @@
 <h1>cool node js website</h1>
 <button id="alertButton">Click Me</button>
 
+<!-- Include Socket.IO from CDN -->
 <script src="https://cdn.socket.io/4.0.0/socket.io.min.js"></script>
 <script>
-    const socket = io();
+    const socket = io('http://localhost:3000'); // Connect to your local server
 
     function buttonFunction() {
         socket.emit('sendAlert');
