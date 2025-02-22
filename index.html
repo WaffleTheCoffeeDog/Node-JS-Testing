@@ -1,15 +1,17 @@
 <h1>cool node js website</h1>
-<button id="alertButton" onclick="buttonFunction()">Click Me</button>
+<button id="alertButton">Click Me</button>
 
-   <script src="/socket.io/socket.io.js"></script>
-   <script>
-      const socket = io();
+<script src="/socket.io/socket.io.js"></script>
+<script>
+    const socket = io();
 
-     function buttonFunction () {
-         socket.emit('sendAlert');
-     }
+    function buttonFunction() {
+        socket.emit('sendAlert');
+    }
 
-      socket.on('receiveAlert', (message) => {
-         alert(message);
-      });
-   </script>
+    socket.on('receiveAlert', (message) => {
+        alert(message);
+    });
+
+    document.getElementById('alertButton').onclick = buttonFunction;
+</script>
