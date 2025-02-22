@@ -1,13 +1,13 @@
 <h1>cool node js website</h1>
-<button id="alertButton">Click Me</button>
+<button id="alertButton" onclick="buttonFunction()">Click Me</button>
 
    <script src="/socket.io/socket.io.js"></script>
    <script>
       const socket = io();
 
-      document.getElementById('alertButton').addEventListener('click', () => {
+     function buttonFunction () {
          socket.emit('sendAlert');
-      });
+     }
 
       socket.on('receiveAlert', (message) => {
          alert(message);
